@@ -11,6 +11,7 @@ export type TUsers = {
   id: number;
   firstName: string;
   lastName: string;
+  maidenName: string;
   age: number;
   gender: string;
   email: string;
@@ -18,6 +19,11 @@ export type TUsers = {
   username: string;
   birthDate: string;
   image: string;
+  bloodGroup: string;
+  height: number;
+  weight: number;
+  eyeColor: string;
+  university: string;
 };
 
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
