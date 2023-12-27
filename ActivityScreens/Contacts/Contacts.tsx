@@ -9,16 +9,21 @@ import React from 'react';
 import Contact from './Contact.tsx';
 import {styles} from '../../Stylesheet/StyleSheet.tsx';
 import {useUserContext} from '../../DataContext/UserDataContext.tsx';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
+import {ContactStackParamsList} from '../../App.tsx';
 
 function ContactUs() {
   const {users} = useUserContext();
+  const navigation: NavigationProp<ContactStackParamsList> = useNavigation();
   return (
     <SafeAreaView>
       <Text style={styles.header}>Welcome to the Contact Screen</Text>
       {users ? (
         <FlatList
           data={users}
-          renderItem={({item}) => <Contact user={item} />}
+          renderItem={({item}) => (
+            <Contact navigation={navigation} user={item} />
+          )}
         />
       ) : (
         <View>
