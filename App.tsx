@@ -3,20 +3,21 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import Home, {TUsers} from './ActivityScreens/Home.tsx';
-import ContactUs from './ActivityScreens/Contacts/Contacts.tsx';
 import AboutUs from './ActivityScreens/AboutUs.tsx';
 import {UsersProvider} from './DataContext/UserDataContext.tsx';
-import {UserProfile} from './ActivityScreens/Contacts/UserProfile.tsx';
+import {ContactStack} from './ActivityScreens/Contacts/Contact.tsx';
 
 export type RootStackParamList = {
   Home: undefined;
   Contacts: undefined;
   AboutUs: undefined;
+};
+
+export type ContactStackParamsList = {
   UserProfile: {
     user: TUsers;
   };
 };
-
 const Stack = createStackNavigator();
 
 function HomeStack() {
@@ -24,9 +25,12 @@ function HomeStack() {
     <UsersProvider>
       <Stack.Navigator>
         <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Contacts" component={ContactUs} />
+        <Stack.Screen
+          name="Contacts"
+          component={ContactStack}
+          options={{headerShown: false}}
+        />
         <Stack.Screen name="AboutUs" component={AboutUs} />
-        <Stack.Screen name="UserProfile" component={UserProfile} />
       </Stack.Navigator>
     </UsersProvider>
   );
